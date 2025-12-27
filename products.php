@@ -42,6 +42,21 @@ if(isset($_GET['ajax'])) {
             <span class="badge bg-warning text-dark mb-2" style="background: linear-gradient(135deg, #ff6600 0%, #ff8533 100%) !important; color: white !important; font-weight: 600;"><?=htmlspecialchars($p['category'])?></span>
             <h6 class="fw-bold"><?=htmlspecialchars($p['name'])?></h6>
             <p class="text-muted small mb-2"><?=htmlspecialchars(substr($p['description'] ?? '', 0, 60))?>...</p>
+            
+            <!-- Rating Stars -->
+            <div class="mb-2" style="color: #ff6600; font-size: 0.9rem;">
+                <?php 
+                $avg_rating = $p['average_rating'] ?? 0;
+                $rating_count = $p['rating_count'] ?? 0;
+                for ($i = 1; $i <= 5; $i++): 
+                ?>
+                    <i class="fas fa-star" style="opacity: <?= $i <= round($avg_rating) ? '1' : '0.3' ?>"></i>
+                <?php endfor; ?>
+                <span style="color: #666; font-size: 0.85rem; margin-left: 0.5rem;">
+                    (<?= $rating_count ?> đánh giá)
+                </span>
+            </div>
+            
             <p class="mb-2 text-success fw-bold fs-5"><?=pretty_money($p['price'])?></p>
             <div class="d-flex gap-2 mt-auto">
                 <a href="product.php?slug=<?=urlencode($p['slug'])?>" class="comic-button-small flex-grow-1 text-center">

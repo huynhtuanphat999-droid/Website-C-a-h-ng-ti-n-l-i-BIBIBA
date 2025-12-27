@@ -1,6 +1,8 @@
 <?php
 require_once 'config.php';
 require_once 'functions.php';
+require_once 'rating_component.php';
+
 $slug = $_GET['slug'] ?? '';
 $stmt = $pdo->prepare("SELECT * FROM products WHERE slug = :s LIMIT 1");
 $stmt->execute([':s'=>$slug]);
@@ -245,5 +247,10 @@ include 'header.php';
         Quay lại thực đơn
     </a>
 </div>
+
+<?php 
+// Hiển thị ratings component
+display_product_rating($p['id'], $p['average_rating'] ?? 0, $p['rating_count'] ?? 0);
+?>
 
 <?php include 'footer.php'; ?>

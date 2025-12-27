@@ -59,7 +59,7 @@ if (!isset($response['payUrl']) && !isset($response['qrCodeUrl'])) {
     exit;
 }
 
-include 'header.php';
+include 'header.php'; 
 ?>
 
 <style>
